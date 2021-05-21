@@ -21,18 +21,11 @@ class FineFTP constructor(
 
     fun openConnect(): Boolean {
         ftpClient.controlEncoding = "UTF-8"
-        var reply: Int = ftpClient.replyCode
         ftpClient.connect(host)
-        if (!FTPReply.isPositiveCompletion(reply)) {
-            ftpClient.disconnect()
-            throw IOException("connect fail: $reply")
-        }
         val login: Boolean = ftpClient.login(username, password)
-        reply = ftpClient.replyCode
-        if (!FTPReply.isPositiveCompletion(reply)) {
+        if (!FTPReply.isPositiveCompletion(ftpClient.replyCode))
             ftpClient.disconnect()
-            throw IOException("connect fail: $reply")
-        } else {
+        else {
             val config = FTPClientConfig(ftpClient.systemType.split(" ").toTypedArray()[0])
             config.serverLanguageCode = "zh"
             ftpClient.configure(config)

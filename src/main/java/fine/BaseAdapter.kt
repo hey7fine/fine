@@ -1,35 +1,30 @@
-package eliyah.fine
+package fine
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 
-abstract class BaseAdapter<T> :RecyclerView.Adapter<BaseAdapter.ViewHolder>() {
+abstract class BaseAdapter<T>(
+    private var count: Int = 1,
+    private var bgColors: List<Int> = listOf()
+) :RecyclerView.Adapter<BaseAdapter.ViewHolder>() {
+    
     private lateinit var context:Context
-    private var data :List<T> = ArrayList()
-    private var count=0
-    private var bgColors = listOf<Int>()
+    private var data :MutableList<T> = ArrayList()
 
     //更新数据内容
     fun setData(data:List<T>){
-        this.data=data
+        this.data=data.toMutableList()
         notifyDataSetChanged()
     }
 
     fun getData() = this.data
 
-    //每页条目数量 & 背景颜色
-    fun setParms(count:Int,colors:List<Int>?){
-        this.count=count
-        if(colors!=null) this.bgColors=colors
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         this.context=parent.context
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(LayoutId,parent,false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(layoutRes,parent,false))
     }
 
     override fun getItemCount(): Int {
@@ -39,26 +34,17 @@ abstract class BaseAdapter<T> :RecyclerView.Adapter<BaseAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (bgColors.size>0)
-            holder.itemView.setBackgroundColor(if (position%2==0) bgColors[0] else bgColors[1])
+        if (bgColors.isNotEmpty())
+            holder.itemView.setBackgroundColor(bgColors[position%bgColors.size])
         if (position < data.size)
             fill(holder.itemView,position,data[position])
-//        else clear(holder.itemView,position)
     }
 
-    abstract val LayoutId:Int
+    abstract val layoutRes:Int
 
-    open fun fill(itemView : View,position: Int, item: T){
-//        itemView.setOnClickListener { listener.onItemClick(position) }
-    }
+    open fun fill(view : View,position: Int, it: T){}
 
-    open fun clear(itemView : View,position: Int){}
+    open fun clear(view : View,position: Int){}
 
-    interface OnItemClickListener{
-        fun onItemClick(position: Int)
-    }
-
-    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        fun<T : View> getView(id:Int):T = itemView.findViewById<T>(id)
-    }
+    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
 }

@@ -24,7 +24,7 @@ object CommonUtils {
         abs(unit.toSeconds(time) % 3600 / 60),
         abs(unit.toSeconds(time) % 60))
 
-    fun getColor(color: String) = try {
+    fun getColor(color: String?) = try {
             Color.parseColor(color)
         } catch (e: Exception) {
             Color.RED

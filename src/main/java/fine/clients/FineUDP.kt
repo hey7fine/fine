@@ -9,21 +9,19 @@ import java.net.SocketException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-/**
- * Created by shensky on 2017/12/21.
- */
 class FineUDP constructor(
     private val host: String,
-    private val port: Int
+    private val port: Int,
+    private var onParserComplete : (data: DatagramPacket?)->Unit = {}
 ) {
     private val receiveByte = ByteArray(BUFFER_LENGTH)
     private var isThreadRunning = false
     private var client: DatagramSocket? = null
     private var receivePacket: DatagramPacket? = null
-    private val mThreadPool: ExecutorService
+    private val mThreadPool: ExecutorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * POOL_SIZE)
     private var clientThread: Thread? = null
-    private var udpReceiveCallback: OnUDPReceiveCallbackBlock? = null
-    fun startUDPSocket() {
+
+    private fun startUDPSocket() {
         if (client != null) return
         try {
 //            表明这个 Socket 在设置的端口上监听数据。
@@ -40,21 +38,15 @@ class FineUDP constructor(
         }
     }
 
-    /**
-     * 开启发送数据的线程
-     */
     private fun startSocketThread() {
-        clientThread = Thread(Runnable {
+        clientThread = Thread {
             Log.d(TAG, "clientThread is running...")
             receiveMessage()
-        })
+        }
         isThreadRunning = true
         clientThread!!.start()
     }
 
-    /**
-     * 处理接受到的消息
-     */
     private fun receiveMessage() {
         while (isThreadRunning) {
             if (client != null) {
@@ -78,11 +70,7 @@ class FineUDP constructor(
                 "$strReceive from " + receivePacket!!.address
                     .hostAddress + ":" + receivePacket!!.port
             )
-            //            解析接收到的 json 信息
-            if (udpReceiveCallback != null) {
-                udpReceiveCallback!!.OnParserComplete(receivePacket)
-            }
-            //            每次接收完UDP数据后，重置长度。否则可能会导致下次收到数据包被截断。
+            onParserComplete(receivePacket)
             if (receivePacket != null) {
                 receivePacket!!.length =
                     BUFFER_LENGTH
@@ -90,10 +78,7 @@ class FineUDP constructor(
         }
     }
 
-    /**
-     * 停止UDP
-     */
-    fun stopUDPSocket() {
+    private fun stopUDPSocket() {
         isThreadRunning = false
         receivePacket = null
         if (clientThread != null) {
@@ -103,12 +88,9 @@ class FineUDP constructor(
             client!!.close()
             client = null
         }
-        removeCallback()
+        onParserComplete = {}
     }
 
-    /**
-     * 发送信息
-     */
     fun sendMessage(message: String) {
         if (client == null) {
             startUDPSocket()
@@ -130,21 +112,8 @@ class FineUDP constructor(
         }
     }
 
-    interface OnUDPReceiveCallbackBlock {
-        fun OnParserComplete(data: DatagramPacket?)
-    }
-
-    fun setUdpReceiveCallback(callback: OnUDPReceiveCallbackBlock?) {
-        udpReceiveCallback = callback
-    }
-
-    fun removeCallback() {
-        udpReceiveCallback = null
-    }
-
     companion object {
-        //    提供一个全局的静态方法
-        var fineUdp: FineUDP? = null
+        var udp: FineUDP? = null
             get() {
                 if (field == null) {
                     synchronized(FineUDP::class.java) {
@@ -162,12 +131,5 @@ class FineUDP constructor(
         private const val POOL_SIZE = 5
         private const val BUFFER_LENGTH = 1024
 
-    }
-
-    //    构造函数私有化
-    init {
-        //        根据CPU数目初始化线程池
-        mThreadPool =
-            Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * POOL_SIZE)
     }
 }

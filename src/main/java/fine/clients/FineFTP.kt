@@ -32,7 +32,6 @@ class FineFTP constructor(
             ftpClient.enterLocalPassiveMode()
             ftpClient.setFileType(org.apache.commons.net.ftp.FTP.BINARY_FILE_TYPE)
             fileList = ftpClient.listFiles(host)
-            println("login")
         }
         return login
     }
@@ -49,7 +48,8 @@ class FineFTP constructor(
         serverPath: String,
         files: List<FineFile>,
         onDownloading : (position: Int, currentStep: String, downProcess: Long)->Unit,
-        onComplete : (List<FineFile>)->Unit
+        onComplete : (List<FineFile>)->Unit,
+        onFailure : (err:String)->Unit = {}
     ) {
         // 打开FTP服务
         ftpClient.changeWorkingDirectory(serverPath)
@@ -62,9 +62,10 @@ class FineFTP constructor(
                     StandardCharsets.ISO_8859_1
                 )
             )
-            if (filter.isEmpty()) continue
-            if (!filter[0].name.equals(file.dealFileName))
+            if (filter.isEmpty() || !filter[0].name.equals(file.dealFileName)) {
+                onFailure("${file.dealFileName}不存在")
                 continue
+            }
             val serverSize = filter[0].size
             val localFile = file.file
             var localSize: Long

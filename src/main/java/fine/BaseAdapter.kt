@@ -14,24 +14,31 @@ abstract class BaseAdapter<T>(
     private lateinit var context:Context
     private var data :MutableList<T> = ArrayList()
 
-    //更新数据内容
     fun setData(data:List<T>){
         this.data=data.toMutableList()
         notifyDataSetChanged()
     }
 
-    fun getData() = this.data
+    fun getData() = data
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        this.context=parent.context
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(layoutRes,parent,false))
+    fun insert(item: T){
+        val position = data.size
+        data.add(position,item)
+        notifyItemInserted(position)
     }
 
-    override fun getItemCount(): Int {
-        //铺满空布局
-        if (count!=0 && data.size%count!=0) return data.size+(count-data.size%count)
-        return data.size
+    fun delete(position:Int){
+        data.removeAt(position)
+        notifyItemRemoved(position)
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
+        LayoutInflater.from(parent.context).inflate(layoutRes,parent,false)
+    ).also {
+        context=parent.context
+    }
+
+    override fun getItemCount() = if (count!=0 && data.size%count!=0) data.size+(count-data.size%count) else data.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (bgColors.isNotEmpty())

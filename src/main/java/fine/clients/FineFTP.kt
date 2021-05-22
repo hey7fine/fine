@@ -67,12 +67,12 @@ class FineFTP constructor(
                 continue
             }
             val serverSize = filter[0].size
-            val localFile = file.file
+            val localFile = file.getFile()
             var localSize: Long
             if (localFile.exists()) {
                 localSize = localFile.length()
                 if (localSize != serverSize) {
-                    file.file.delete()
+                    file.getFile().delete()
                 } else {
                     isExist = true
                     continue

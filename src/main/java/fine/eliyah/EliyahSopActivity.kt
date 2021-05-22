@@ -22,7 +22,7 @@ import java.io.File
 abstract class EliyahSopActivity : AppCompatActivity() {
     abstract val ftp: FineFTP
     var serverT=0L
-    private lateinit var localpath: File
+    lateinit var localpath: File
     private lateinit var remotepath: File
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Button.Submit" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/action_submit</item>
+        <item name="backgroundTint">#3366aa</item>
+        <item name="drawableStartCompat">@drawable/ic_submit</item>
+        <item name="drawableTint">@android:color/white</item>
+    </style>
+
+    <style name="Button.Cancel" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/action_cancel</item>
+        <item name="backgroundTint">#aaaaaa</item>
+        <item name="drawableStartCompat">@drawable/ic_cancel</item>
+        <item name="drawableTint">@android:color/white</item>
+    </style>
+
+    <style name="Button.Login" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/action_login</item>
+        <item name="backgroundTint">#66aa99</item>
+        <item name="drawableStartCompat">@drawable/ic_submit</item>
+        <item name="drawableTint">@android:color/white</item>
+    </style>
+
+    <style name="Button.Refresh" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/action_refresh</item>
+        <item name="backgroundTint">#6699cc</item>
+        <item name="drawableStartCompat">@drawable/ic_refresh</item>
+        <item name="drawableTint">@android:color/white</item>
+    </style>
+</resources>

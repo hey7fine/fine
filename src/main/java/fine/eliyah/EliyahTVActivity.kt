@@ -34,7 +34,6 @@ import kotlinx.coroutines.isActive
 import java.io.IOException
 
 abstract class EliyahTVActivity : AppCompatActivity() {
-    private val Context.dataStore by preferencesDataStore("data-store-prefs")
     var currentLine=""
     var chosenLines= mutableListOf<String>()
     var currentCast=0
@@ -303,6 +302,7 @@ abstract class EliyahTVActivity : AppCompatActivity() {
     }
 
     companion object{
+        val Context.dataStore by preferencesDataStore("data-store-prefs")
         val CURRENT_LINE= stringPreferencesKey("current_line")
         val CHOSEN_LINES = stringSetPreferencesKey("chosen_lines")
         val CURRENT_BOARD= intPreferencesKey("current_board")

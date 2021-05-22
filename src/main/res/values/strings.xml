@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_authority">权限认证</string>
+    <string name="app_site_config">站点配置</string>
+
+    <string name="txt_username">账号</string>
+    <string name="txt_password">密码</string>
+
+    <string name="txt_select_line">产线</string>
+    <string name="txt_select_site">站点</string>
+
+    <string name="action_submit">提交</string>
+    <string name="action_login">登陆</string>
+    <string name="action_refresh">刷新</string>
+    <string name="action_cancel">取消</string>
+</resources>

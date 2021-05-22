@@ -19,8 +19,7 @@
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
             android:text="@string/txt_username"
-            android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="16dp"
@@ -54,8 +53,7 @@
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
             android:text="@string/txt_password"
-            android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="16dp"
@@ -72,26 +70,26 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_margin="16dp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCancel"
             style="@style/Button.Cancel"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
         <Space
             android:layout_width="16dp"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSubmit"
             style="@style/Button.Login"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </LinearLayout>

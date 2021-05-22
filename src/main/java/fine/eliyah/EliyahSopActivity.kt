@@ -22,8 +22,8 @@ import java.io.File
 abstract class EliyahSopActivity : AppCompatActivity() {
     abstract val ftp: FineFTP
     var serverT=0L
-    lateinit var localpath: File
-    lateinit var remotepath: File
+    private lateinit var localpath: File
+    private lateinit var remotepath: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,36 +42,35 @@ abstract class EliyahSopActivity : AppCompatActivity() {
             resources.updateConfiguration(config, dm)
         }
 
+        initView()
+
         EasyPermissions.create(
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         ).callback { grant ->
             if (grant) {
                 localpath = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!
-
                 remotepath = File("/files")
                 if (!localpath.exists()) localpath.mkdir()
-            }
-        }.request(this)
+                //Main
+                MainScope().launch {
+                    var sec=0
+                    initData()
 
-        initView()
-        //Main
-        MainScope().launch {
-            var sec=0
-            initData()
-
-            while (isActive){
-                try {
-                    if (sec%5==0) refresh()
-                    doLoop(sec)
-                    sec++
-                    delay(1000)
-                }catch (e:Exception){
-                    if (sec%60==0)
-                        Toast.makeText(applicationContext, "${e.message}", Toast.LENGTH_SHORT).show()
+                    while (isActive){
+                        try {
+                            if (sec%5==0) refresh()
+                            doLoop(sec)
+                            sec++
+                            delay(1000)
+                        }catch (e:Exception){
+                            if (sec%60==0)
+                                Toast.makeText(applicationContext, "${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
-        }
+        }.request(this)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

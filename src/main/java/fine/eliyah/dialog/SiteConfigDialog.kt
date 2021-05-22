@@ -13,32 +13,16 @@ import fine.eliyah.model.LineInfo
 
 class SiteConfigDialog constructor(
     private val context : Context,
-    onRefresh : ()->Unit,
+    onRefresh : (SiteConfigDialog)->Unit,
     onSubmit : (Int,Int)->Unit
-    ) {
+) {
     private val binding = ViewSiteConfigBinding.inflate(LayoutInflater.from(context))
     private val dialog = MaterialDialog(context)
-    private var data : List<LineInfo> = ArrayList<LineInfo>()
-    private var lines :List<String> = ArrayList()
-    private var sites : List<String> = ArrayList()
-    var adapterLines = ArrayAdapter(context,R.layout.item_spinner,lines)
-    var adapterSites = ArrayAdapter(context,R.layout.item_spinner,sites)
+    private var data : List<LineInfo> = ArrayList()
 
-    fun upload(lines :List<LineInfo>) = this.also {
-        this.data = lines
-        adapterLines = ArrayAdapter(context,R.layout.item_spinner, List(lines.size){lines[it].lineName})
-        binding.spnLines.adapter = adapterLines
-    }
-
-    fun uploadLines(lines : List<String>) = this.also {
-        this.lines = lines
-        adapterLines = ArrayAdapter(context,R.layout.item_spinner,lines)
-        binding.spnLines.adapter = adapterLines
-    }
-
-    fun uploadSites(sites : List<String>) = this.also {
-        this.sites = sites
-        adapterSites = ArrayAdapter(context,R.layout.item_spinner,sites)
+    fun upload(list :List<LineInfo>) = this.also {
+        data = list
+        binding.spnLines.adapter = ArrayAdapter(context,R.layout.item_spinner, List(data.size){data[it].lineName})
     }
 
     fun show() {
@@ -57,15 +41,10 @@ class SiteConfigDialog constructor(
                 dialog.dismiss()
             }
             btnRefresh.setOnClickListener {
-                onRefresh()
+                onRefresh(this@SiteConfigDialog)
             }
             spnLines.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     selectLine(position)
                 }
 
@@ -74,11 +53,10 @@ class SiteConfigDialog constructor(
                 }
             }
         }
+        onRefresh(this)
     }
 
-    fun selectLine(i:Int){
-        this.sites = List(data[i].siteInfos.size){data[i].siteInfos[it].siteName}
-        adapterSites = ArrayAdapter(context,R.layout.item_spinner,sites)
-        binding.spnSites.adapter = adapterSites
+    private fun selectLine(i:Int){
+        binding.spnSites.adapter = ArrayAdapter(context,R.layout.item_spinner,List(data[i].siteInfos.size){data[i].siteInfos[it].siteName})
     }
 }

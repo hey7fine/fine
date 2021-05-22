@@ -81,7 +81,7 @@
             android:id="@+id/btnRefresh"
             style="@style/Button.Refresh"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
         <Space
             android:layout_width="0dp"
@@ -92,7 +92,7 @@
             android:id="@+id/btnCancel"
             style="@style/Button.Cancel"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
         <Space
             android:layout_width="16dp"
@@ -102,7 +102,7 @@
             android:id="@+id/btnSubmit"
             style="@style/Button.Submit"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </LinearLayout>

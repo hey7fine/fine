@@ -2,6 +2,18 @@
 <resources>
     <string name="app_authority">权限认证</string>
     <string name="app_site_config">站点配置</string>
+    <string name="app_alarm_arg">异常报警信息选择</string>
+    <string name="app_alarm_error">异常状态申报</string>
+    <string name="app_alarm_state">异常报警信息操作</string>
+    <string name="app_tips">提示</string>
+
+    <string name="action_submit">提交</string>
+    <string name="action_login">登陆</string>
+    <string name="action_refresh">刷新</string>
+    <string name="action_cancel">取消</string>
+
+    <string name="menu_account">账户设置</string>
+    <string name="menu_site_config">@string/app_site_config</string>
 
     <string name="txt_username">账号</string>
     <string name="txt_password">密码</string>
@@ -9,8 +21,13 @@
     <string name="txt_select_line">产线</string>
     <string name="txt_select_site">站点</string>
 
-    <string name="action_submit">提交</string>
-    <string name="action_login">登陆</string>
-    <string name="action_refresh">刷新</string>
-    <string name="action_cancel">取消</string>
+    <string name="txt_alarm_arg">状态</string>
+    <string name="txt_alarm_content">原因</string>
+    <string name="txt_alarm_error">异常</string>
+    <string name="txt_alarm_sign">签到</string>
+    <string name="txt_alarm_normal">正常</string>
+
+    <string name="tips_alarm_error">确认提交异常状态</string>
+    <string name="tips_alarm_sign">确认签到异常</string>
+    <string name="tips_alarm_normal">确认取消异常状态</string>
 </resources>

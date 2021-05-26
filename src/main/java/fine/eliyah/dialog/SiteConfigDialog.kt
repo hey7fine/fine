@@ -13,7 +13,7 @@ import fine.eliyah.model.LineInfo
 
 class SiteConfigDialog constructor(
     private val context : Context,
-    onRefresh : (SiteConfigDialog)->Unit,
+    onRefresh : SiteConfigDialog.()->Unit,
     onSubmit : (Int,Int)->Unit
 ) {
     private val binding = ViewSiteConfigBinding.inflate(LayoutInflater.from(context))
@@ -52,8 +52,9 @@ class SiteConfigDialog constructor(
 
                 }
             }
+            spnLines.adapter = ArrayAdapter(context,R.layout.item_spinner, List(data.size){data[it].lineName})
         }
-        onRefresh(this)
+         onRefresh(this)
     }
 
     private fun selectLine(i:Int){

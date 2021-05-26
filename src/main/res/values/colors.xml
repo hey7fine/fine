@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="alarm_error">#CE4541</color>
+    <color name="alarm_sign">#D6A438</color>
+    <color name="alarm_normal">#3C9A6F</color>
+</resources>

@@ -35,4 +35,22 @@
         <item name="drawableStartCompat">@drawable/ic_refresh</item>
         <item name="drawableTint">@android:color/white</item>
     </style>
+
+    <style name="Button.AlarmError" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/txt_alarm_error</item>
+        <item name="backgroundTint">@color/alarm_error</item>
+    </style>
+
+    <style name="Button.AlarmSign" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/txt_alarm_sign</item>
+        <item name="backgroundTint">@color/alarm_sign</item>
+    </style>
+
+    <style name="Button.AlarmNormal" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/txt_alarm_normal</item>
+        <item name="backgroundTint">@color/alarm_normal</item>
+    </style>
 </resources>

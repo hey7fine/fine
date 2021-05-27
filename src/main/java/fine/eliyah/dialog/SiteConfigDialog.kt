@@ -58,6 +58,7 @@ class SiteConfigDialog constructor(
     }
 
     private fun selectLine(i:Int){
-        binding.spnSites.adapter = ArrayAdapter(context,R.layout.item_spinner,List(data[i].siteInfos.size){data[i].siteInfos[it].siteName})
+        if (!data[i].siteInfos.isNullOrEmpty())
+            binding.spnSites.adapter = ArrayAdapter(context,R.layout.item_spinner,List(data[i].siteInfos.size){data[i].siteInfos[it].siteName})
     }
 }

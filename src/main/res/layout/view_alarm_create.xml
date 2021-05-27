@@ -34,12 +34,12 @@
             android:id="@+id/alarmArg"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
+            android:layout_weight="3"
             android:drawablePadding="16dp"
             android:gravity="center_vertical"
-            tools:text="正常"
             android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:text="正常" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,8 +71,8 @@
             android:id="@+id/content_spinner"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_weight="3" />
     </LinearLayout>
 
 

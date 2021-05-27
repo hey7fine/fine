@@ -30,7 +30,7 @@
             android:id="@+id/spn_lines"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5" />
+            android:layout_weight="3" />
 
     </LinearLayout>
 
@@ -65,7 +65,7 @@
             android:id="@+id/spn_sites"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
+            android:layout_weight="3"
             android:inputType="textPassword" />
 
     </LinearLayout>

@@ -6,13 +6,21 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import fine.R
 import fine.databinding.ViewAuthorityBinding
+import fine.eliyah.model.PersonBaseInfo
 
 class AuthorityDialog constructor(
     context : Context,
-    onSubmit : (String,String)->Unit
+    onRefresh : AuthorityDialog.(String,String)->Unit,
+    val onSubmit : (String,String)->Unit
     ) {
     private val binding = ViewAuthorityBinding.inflate(LayoutInflater.from(context))
     private val dialog = MaterialDialog(context)
+
+    fun upload(user:PersonBaseInfo){
+        if (user.workerNo.equals("${binding.txtUsername.text}"))
+            onSubmit(user.workerNo,user.psw)
+        dialog.dismiss()
+    }
 
     fun show() {
         dialog.title(R.string.app_authority)
@@ -23,8 +31,7 @@ class AuthorityDialog constructor(
     init {
         binding.apply {
             btnSubmit.setOnClickListener {
-                onSubmit("${txtUsername.text}","${txtPassword.text}")
-                dialog.dismiss()
+                onRefresh("${txtUsername.text}","${txtPassword.text}")
             }
             btnCancel.setOnClickListener {
                 dialog.dismiss()

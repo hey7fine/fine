@@ -2,6 +2,8 @@
 <resources>
     <style name="Button" parent="Widget.AppCompat.Button">
         <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="Button.Submit" parent="Button">
@@ -33,6 +35,30 @@
         <item name="android:text">@string/action_refresh</item>
         <item name="backgroundTint">#6699cc</item>
         <item name="drawableStartCompat">@drawable/ic_refresh</item>
+        <item name="drawableTint">@android:color/white</item>
+    </style>
+
+    <style name="Button.Insert" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/action_insert</item>
+        <item name="backgroundTint">#6699cc</item>
+        <item name="drawableStartCompat">@drawable/ic_insert</item>
+        <item name="drawableTint">@android:color/white</item>
+    </style>
+
+    <style name="Button.Delete" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/action_delete</item>
+        <item name="backgroundTint">#9DA7B0</item>
+        <item name="drawableStartCompat">@drawable/ic_delete</item>
+        <item name="drawableTint">@android:color/white</item>
+    </style>
+
+    <style name="Button.Update" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/action_update</item>
+        <item name="backgroundTint">#3366aa</item>
+        <item name="drawableStartCompat">@drawable/ic_setting</item>
         <item name="drawableTint">@android:color/white</item>
     </style>
 

@@ -15,9 +15,6 @@
     <string name="menu_account">账户设置</string>
     <string name="menu_site_config">@string/app_site_config</string>
 
-    <string name="menu_account">账户设置</string>
-    <string name="menu_site_config">@string/app_site_config</string>
-
     <string name="txt_username">账号</string>
     <string name="txt_password">密码</string>
 

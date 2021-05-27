@@ -26,6 +26,7 @@ class CellProdDetailAdapter(
                 }
                 ProdDetail.Type.BAD->{
                     txtBadName.text = it.badContent
+                    txtBadName.setBackgroundColor(it.formattedColor)
                     txtNum.text = "${it.badNum}"
                 }
             }

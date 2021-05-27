@@ -46,6 +46,5 @@
     <string name="txt_num">数量</string>
     <string name="txt_operator">作业员</string>
     <string name="txt_action">操作</string>
-    <string name="txt_pro_model">产品型号</string>
     <string name="txt_bad_type">不良类型</string>
 </resources>

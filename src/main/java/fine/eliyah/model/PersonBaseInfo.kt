@@ -1,18 +1,18 @@
 package fine.eliyah.model
 
 data class PersonBaseInfo(
-    val departmentCode: String,
-    val departmentName: Any,
-    val dingding: Any,
-    val email: Any,
-    val lineId: Any,
-    val phoneNum: Any,
-    val photo: Any,
-    val psw: String,
-    val roleId: Int,
-    val roleName: Any,
-    val signatureImage: Any,
-    val wechat: Any,
-    val workerName: String,
-    val workerNo: String
+    val departmentCode: String = "",
+    val departmentName: String = "",
+    val dingding: String = "",
+    val email: String = "",
+    val lineId: String = "",
+    val phoneNum: String = "",
+    val photo: String = "",
+    val psw: String = "",
+    val roleId: Int = 0,
+    val roleName: String = "",
+    val signatureImage: String = "",
+    val wechat: String = "",
+    val workerName: String = "",
+    val workerNo: String = ""
 )

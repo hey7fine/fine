@@ -17,7 +17,7 @@ class ConfirmDialog constructor(
 
     fun show() {
         dialog.title(R.string.app_alarm_state)
-            .customView(view = binding.root,dialogWrapContent = true)
+            .customView(view = binding.root)
             .show()
     }
 

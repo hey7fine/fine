@@ -9,23 +9,38 @@ import com.afollestad.materialdialogs.customview.customView
 import fine.R
 import fine.databinding.ViewProdDetailsBinding
 import fine.eliyah.adapter.CellProdDetailAdapter
-import fine.eliyah.model.ProdDetail
+import fine.eliyah.model.*
 
 class ProdDetailDialog constructor(
     private val context : Context,
     private val type: ProdDetail.Type,
     onRefresh : ProdDetailDialog.()->Unit,
-    onInsert : ProdDetailDialog.()->Unit,
+    onInsert : (ProdDetail)->Unit,
     onDelete : (ProdDetail)->Unit,
     onUpdate : (ProdDetail)->Unit
 ) {
     private val binding = ViewProdDetailsBinding.inflate(LayoutInflater.from(context))
     private val dialog = MaterialDialog(context)
-    private val adapter = CellProdDetailAdapter(type,onDelete,onUpdate)
+    private val adapter = CellProdDetailAdapter(type,
+        onDelete = {
+            ConfirmDialog(context,context.getString(R.string.tips_bad_delete)){
+                onDelete(it)
+            }.show()
+        },
+        onUpdate = { showEditDialog(it){ onUpdate(it) } }
+    )
     private var data : List<ProdDetail> = ArrayList()
+    private var args : List<BadArg> = ArrayList()
+    private var order = OrderInfo()
+    private var site = SiteInfo()
+    private var worker = PersonBaseInfo()
 
-    fun upload(list :List<ProdDetail>) = this.also {
-        data = list
+    fun upload(data :List<ProdDetail>,args:List<BadArg>,order:OrderInfo,site: SiteInfo,worker:PersonBaseInfo) = this.also {
+        this.data = data
+        this.args = args
+        this.order = order
+        this.site = site
+        this.worker = worker
         adapter.setData(data)
         if (data.isNotEmpty()){
             binding.txtEmpty.visibility = View.GONE
@@ -56,8 +71,30 @@ class ProdDetailDialog constructor(
                 txtEmpty.visibility = View.GONE
             }else
                 binding.recyclerView.visibility = View.GONE
-            btnAdd.setOnClickListener { onInsert() }
+            btnAdd.setOnClickListener {
+                showEditDialog(
+                    ProdDetail(
+                        orderDid = order.orderDid,
+                        orderNo = order.orderNo,
+                        siteId = site.siteId,
+                        siteName = site.siteName,
+                        workerNo = worker.workerNo,
+                        workerName = worker.workerName)
+                ){
+                    onInsert(it)
+                }
+            }
         }
         onRefresh()
+    }
+
+    private fun showEditDialog(prod:ProdDetail, onCommit:(ProdDetail)->Unit){
+        ProdEditDialog(context,type,prod,
+            onRefresh = {
+                this.upload(args)
+            }
+        ){
+            onCommit(it)
+        }.show()
     }
 }

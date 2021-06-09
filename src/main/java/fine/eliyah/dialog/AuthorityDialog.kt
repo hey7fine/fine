@@ -35,7 +35,7 @@ class AuthorityDialog constructor(
                 if(txtUsername.text.isNotEmpty() && txtPassword.text.isNotEmpty())
                     onRefresh("${txtUsername.text}","${txtPassword.text}")
                 else
-                    Toast.makeText(context, "必填项不能为空", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.tips_fill_blank, Toast.LENGTH_SHORT).show()
             }
             btnCancel.setOnClickListener {
                 dialog.dismiss()

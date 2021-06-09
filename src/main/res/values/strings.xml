@@ -47,6 +47,7 @@
     <string name="tips_material_none">当前暂无可选物料</string>
     <string name="tips_good_delete">确认删除该生产记录</string>
     <string name="tips_bad_delete">确认删除该不良记录</string>
+    <string name="tips_fill_blank">必填项不能为空</string>
 
     <string name="txt_order_no">订单号</string>
     <string name="txt_site">站点</string>

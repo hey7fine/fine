@@ -62,6 +62,14 @@
         <item name="drawableTint">@android:color/white</item>
     </style>
 
+    <style name="Button.Select" parent="Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/action_select</item>
+        <item name="backgroundTint">#3366aa</item>
+        <item name="drawableStartCompat">@drawable/ic_setting</item>
+        <item name="drawableTint">@android:color/white</item>
+    </style>
+
     <style name="Button.AlarmError" parent="Button">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:text">@string/txt_alarm_error</item>

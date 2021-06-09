@@ -7,7 +7,11 @@
     <string name="app_alarm_state">异常报警信息操作</string>
     <string name="app_prod_good">生产记录</string>
     <string name="app_prod_bad">不良记录</string>
+    <string name="app_order_select">订单选取</string>
     <string name="app_tips">提示</string>
+    <string name="app_material_alarm">物料异常报警信息</string>
+    <string name="app_material_insert">物料异常报警申报</string>
+    <string name="app_material_arg">异常报警物料选择</string>
 
     <string name="action_submit">提交</string>
     <string name="action_login">登陆</string>
@@ -16,6 +20,7 @@
     <string name="action_insert">添加</string>
     <string name="action_delete">删除</string>
     <string name="action_update">修改</string>
+    <string name="action_select">选择</string>
 
     <string name="menu_account">账户设置</string>
     <string name="menu_site_config">@string/app_site_config</string>
@@ -37,6 +42,9 @@
     <string name="tips_alarm_normal">确认取消异常状态</string>
     <string name="tips_good_none">当前暂无生产记录</string>
     <string name="tips_bad_none">当前暂无不良记录</string>
+    <string name="tips_order_none">当前暂无可选订单</string>
+    <string name="tips_material_alarm_none">当前暂无物料异常</string>
+    <string name="tips_material_none">当前暂无可选物料</string>
     <string name="tips_good_delete">确认删除该生产记录</string>
     <string name="tips_bad_delete">确认删除该不良记录</string>
 
@@ -47,4 +55,22 @@
     <string name="txt_operator">作业员</string>
     <string name="txt_action">操作</string>
     <string name="txt_bad_type">不良类型</string>
+    <string name="txt_pro_name">产品名称</string>
+    <string name="txt_plan_num">计划数</string>
+    <string name="txt_order_date">下单时间</string>
+    <string name="txt_complete_num">完成数</string>
+    <string name="txt_customer">客户</string>
+
+    <string name="txt_material_code">物料代码</string>
+    <string name="txt_material_name">物料名称</string>
+    <string name="txt_material_model">物料型号</string>
+    <string name="txt_comment">备注</string>
+    <string name="txt_start_time">开始时间</string>
+    <string name="txt_start_worker">呼叫人</string>
+    <string name="txt_sign_time">签到时间</string>
+    <string name="txt_sign_worker">签到人</string>
+    <string name="txt_duration">持续时间</string>
+
+    <string name="txt_material">物料</string>
+
 </resources>

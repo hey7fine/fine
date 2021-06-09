@@ -53,13 +53,13 @@ abstract class EliyahTVActivity : AppCompatActivity() {
                 localLayoutParams.flags or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 
         //hdpi
-        val dm = resources.displayMetrics
-        if (dm.densityDpi != DisplayMetrics.DENSITY_HIGH) {
-            val config = resources.configuration
-            dm.densityDpi = DisplayMetrics.DENSITY_HIGH
-            config.densityDpi = DisplayMetrics.DENSITY_HIGH
-            resources.updateConfiguration(config, dm)
-        }
+//        val dm = resources.displayMetrics
+//        if (dm.densityDpi != DisplayMetrics.DENSITY_HIGH) {
+//            val config = resources.configuration
+//            dm.densityDpi = DisplayMetrics.DENSITY_HIGH
+//            config.densityDpi = DisplayMetrics.DENSITY_HIGH
+//            resources.updateConfiguration(config, dm)
+//        }
 
         //sharedPreferences
 //        sharedPreferences = getSharedPreferences("app_preference", Context.MODE_PRIVATE)

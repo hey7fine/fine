@@ -2,6 +2,7 @@ package fine.eliyah.dialog
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import fine.R
@@ -17,7 +18,7 @@ class AuthorityDialog constructor(
     private val dialog = MaterialDialog(context)
 
     fun upload(user:PersonBaseInfo){
-        if (user.workerNo.equals("${binding.txtUsername.text}"))
+        if (user.workerNo == "${binding.txtUsername.text}")
             onSubmit(user.workerNo,user.psw)
         dialog.dismiss()
     }
@@ -31,7 +32,10 @@ class AuthorityDialog constructor(
     init {
         binding.apply {
             btnSubmit.setOnClickListener {
-                onRefresh("${txtUsername.text}","${txtPassword.text}")
+                if(txtUsername.text.isNotEmpty() && txtPassword.text.isNotEmpty())
+                    onRefresh("${txtUsername.text}","${txtPassword.text}")
+                else
+                    Toast.makeText(context, "必填项不能为空", Toast.LENGTH_SHORT).show()
             }
             btnCancel.setOnClickListener {
                 dialog.dismiss()

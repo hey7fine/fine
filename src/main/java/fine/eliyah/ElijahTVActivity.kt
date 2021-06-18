@@ -33,7 +33,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.isActive
 import java.io.IOException
 
-abstract class EliyahTVActivity : AppCompatActivity() {
+abstract class ElijahTVActivity : AppCompatActivity() {
     var currentLine=""
     var chosenLines= mutableListOf<String>()
     var currentCast=0

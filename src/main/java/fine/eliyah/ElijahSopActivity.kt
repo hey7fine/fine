@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.io.File
 
-abstract class EliyahSopActivity : AppCompatActivity() {
+abstract class ElijahSopActivity : AppCompatActivity() {
     abstract val ftp: FineFTP
     var serverT=0L
     lateinit var localpath: File

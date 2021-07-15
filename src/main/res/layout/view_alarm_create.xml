@@ -67,7 +67,7 @@
             android:layout_width="16dp"
             android:layout_height="match_parent" />
 
-        <fine.eliyah.view.EditSpinner
+        <fine.elijah.view.EditSpinner
             android:id="@+id/content_spinner"
             android:layout_width="0dp"
             android:layout_height="match_parent"

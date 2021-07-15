@@ -12,6 +12,7 @@ class Swimming(
     var isSwimming: Boolean = false,
     var t: Long = 0,
     var isCount:Boolean = false,
+    val stopTask:()->Unit = {},
     val task: suspend (t: Long) -> Unit
 ){
     fun start(time: Long = 0) {
@@ -31,6 +32,7 @@ class Swimming(
 
     fun stop() {
         isSwimming = false
+        stopTask()
     }
 }
 

@@ -12,6 +12,8 @@
     <string name="app_material_alarm">物料异常报警信息</string>
     <string name="app_material_insert">物料异常报警申报</string>
     <string name="app_material_arg">异常报警物料选择</string>
+    <string name="app_board_switch">看板切换</string>
+    <string name="app_cast_setting">轮播设置(秒)</string>
 
     <string name="action_submit">提交</string>
     <string name="action_login">登陆</string>
